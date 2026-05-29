@@ -1,0 +1,853 @@
+/* ========================= */
+/* BASE */
+/* ========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:#f3f3f3;
+    color:#333;
+}
+
+
+/* ========================= */
+/* HEADER */
+/* ========================= */
+
+.header{
+    background:#ff9800;
+    color:white;
+    text-align:center;
+    padding:22px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.12);
+}
+
+.header h1{
+    font-size:34px;
+    font-weight:bold;
+}
+
+
+/* ========================= */
+/* CONTENEDOR */
+/* ========================= */
+
+.container{
+
+    width:95%;
+    margin:20px auto;
+
+    display:grid;
+
+    grid-template-columns:
+        1fr
+        1fr
+        1fr
+        1fr;
+
+    gap:18px;
+
+    align-items:start;
+}
+
+
+/* ========================= */
+/* CARD */
+/* ========================= */
+
+.card{
+
+    background:white;
+
+    border-radius:8px;
+
+    padding:16px;
+
+    box-shadow:0 2px 8px rgba(0,0,0,0.08);
+
+}
+
+.card h2{
+    font-size:18px;
+    margin-bottom:14px;
+    color:#222;
+}
+
+
+/* ========================= */
+/* PEDIDOS FULL WIDTH */
+/* ========================= */
+
+.card-pedidos{
+    grid-column:1 / 5;
+}
+
+
+/* ========================= */
+/* INPUTS */
+/* ========================= */
+
+input,
+select{
+
+    width:100%;
+
+    padding:10px;
+
+    margin-bottom:12px;
+
+    border:1px solid #ddd;
+
+    border-radius:6px;
+
+    font-size:14px;
+
+    outline:none;
+
+}
+
+input:focus,
+select:focus{
+
+    border-color:#ff9800;
+
+    box-shadow:0 0 0 3px rgba(255,152,0,0.15);
+
+}
+
+
+/* ========================= */
+/* BOTONES */
+/* ========================= */
+
+button{
+
+    border:none;
+
+    border-radius:5px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    transition:0.2s;
+
+}
+
+
+/* BOTON PRINCIPAL */
+
+.card > button{
+
+    width:100%;
+
+    background:#ff9800;
+
+    color:white;
+
+    padding:11px;
+
+    font-size:14px;
+
+}
+
+.card > button:hover{
+    background:#e68900;
+}
+
+
+/* ========================= */
+/* LISTAS */
+/* ========================= */
+
+ul{
+    list-style:none;
+}
+
+li{
+    padding:12px 0;
+    border-bottom:1px solid #eee;
+}
+
+
+/* ========================= */
+/* CATEGORIAS */
+/* ========================= */
+
+.categoria-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.categoria-item span{
+    font-size:15px;
+}
+
+
+/* ========================= */
+/* PRODUCTOS */
+/* ========================= */
+
+.producto-admin{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.producto-info{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.prod-texto h4{
+
+    font-size:15px;
+
+    margin-bottom:3px;
+
+}
+
+.prod-texto p{
+
+    font-size:14px;
+
+    color:#555;
+
+    font-weight:bold;
+
+}
+
+.producto-img{
+
+    width:45px;
+    height:45px;
+
+    object-fit:cover;
+
+    border-radius:6px;
+
+    border:1px solid #ddd;
+
+}
+
+
+/* ========================= */
+/* ACCIONES */
+/* ========================= */
+
+.acciones{
+
+    display:flex;
+
+    gap:6px;
+
+}
+
+
+/* EDITAR */
+
+.btn-editar{
+
+    background:#2196f3;
+
+    color:white;
+
+    padding:7px 10px;
+
+    font-size:13px;
+
+}
+
+.btn-editar:hover{
+    background:#1976d2;
+}
+
+
+/* GUARDAR */
+
+.btn-guardar{
+
+    background:#4caf50;
+
+    color:white;
+
+    padding:7px 10px;
+
+    font-size:13px;
+
+}
+
+.btn-guardar:hover{
+    background:#388e3c;
+}
+
+
+/* ELIMINAR */
+
+.btn-eliminar{
+
+    background:#f44336;
+
+    color:white;
+
+    padding:7px 10px;
+
+    font-size:13px;
+
+}
+
+.btn-eliminar:hover{
+    background:#d32f2f;
+}
+
+
+/* ========================= */
+/* EDIT FORM */
+/* ========================= */
+
+.edit-form{
+
+    margin-top:10px;
+
+    background:#fafafa;
+
+    padding:12px;
+
+    border-radius:6px;
+
+}
+
+
+/* ========================= */
+/* TABLA PEDIDOS */
+/* ========================= */
+
+.tabla-pedidos{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:10px;
+
+}
+
+.tabla-pedidos th{
+
+    background:#f7f7f7;
+
+    padding:12px;
+
+    font-size:14px;
+
+    text-align:left;
+
+    border-bottom:1px solid #eee;
+
+}
+
+.tabla-pedidos td{
+
+    padding:14px 10px;
+
+    border-bottom:1px solid #eee;
+
+    font-size:14px;
+
+    vertical-align:middle;
+
+}
+
+
+/* ========================= */
+/* ESTADOS */
+/* ========================= */
+
+.estado{
+
+    padding:5px 10px;
+
+    border-radius:20px;
+
+    font-size:11px;
+
+    font-weight:bold;
+
+    display:inline-block;
+
+}
+
+
+/* PENDIENTE */
+
+.estado-pendiente{
+
+    background:#ffe082;
+
+    color:#7a5200;
+
+}
+
+
+/* PAGADO */
+
+.estado-pagado{
+
+    background:#c8e6c9;
+
+    color:#1b5e20;
+
+}
+
+
+/* ENTREGADO */
+
+.estado-entregado{
+
+    background:#bbdefb;
+
+    color:#0d47a1;
+
+}
+
+
+/* ========================= */
+/* BOTONES TABLA */
+/* ========================= */
+
+.acciones-tabla{
+
+    display:flex;
+
+    gap:8px;
+
+}
+
+
+/* VER */
+
+.btn-ver{
+
+    background:#2962ff;
+
+    color:white;
+
+    padding:8px 12px;
+
+    font-size:13px;
+
+}
+
+.btn-ver:hover{
+    background:#0039cb;
+}
+
+
+/* PAGADO */
+
+.btn-pagado{
+
+    background:#39b54a;
+
+    color:white;
+
+    padding:8px 12px;
+
+    font-size:13px;
+
+}
+
+.btn-pagado:hover{
+    background:#2d8f3a;
+}
+
+
+/* ENTREGADO */
+
+.btn-entregado{
+
+    background:#7e57c2;
+
+    color:white;
+
+    padding:8px 12px;
+
+    font-size:13px;
+
+}
+
+.btn-entregado:hover{
+    background:#5e35b1;
+}
+
+
+/* ========================= */
+/* MODAL */
+/* ========================= */
+
+.modal{
+
+    display:none;
+
+    position:fixed;
+
+    z-index:999;
+
+    left:0;
+    top:0;
+
+    width:100%;
+    height:100%;
+
+    background:rgba(0,0,0,0.45);
+
+    justify-content:center;
+    align-items:center;
+
+    padding:20px;
+
+}
+
+
+/* ========================= */
+/* MODAL CONTENT */
+/* ========================= */
+
+.modal-content{
+
+    background:white;
+
+    width:100%;
+    max-width:900px;
+
+    border-radius:8px;
+
+    padding:20px;
+
+    position:relative;
+
+}
+
+
+/* ========================= */
+/* CERRAR */
+/* ========================= */
+
+.cerrar{
+
+    position:absolute;
+
+    right:18px;
+    top:12px;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+    color:#777;
+
+}
+
+.cerrar:hover{
+    color:black;
+}
+
+
+/* ========================= */
+/* DETALLE PEDIDO */
+/* ========================= */
+
+/* ========================= */
+/* DETALLE PEDIDO NUEVO */
+/* ========================= */
+
+.detalle-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+    padding-bottom:15px;
+
+    border-bottom:1px solid #eee;
+
+}
+
+.detalle-info h3{
+
+    font-size:22px;
+
+    margin-bottom:8px;
+
+    color:#222;
+
+}
+
+.detalle-info p{
+
+    font-size:14px;
+
+    color:#666;
+
+    margin-bottom:6px;
+
+}
+
+.detalle-info strong{
+    color:#111;
+}
+
+.detalle-total-lateral{
+
+    background:#39b54a;
+
+    color:white;
+
+    padding:14px 22px;
+
+    border-radius:12px;
+
+    font-size:26px;
+
+    font-weight:bold;
+
+    box-shadow:0 3px 10px rgba(57,181,74,0.25);
+
+}
+
+
+/* ========================= */
+/* TABLA DETALLE */
+/* ========================= */
+
+.tabla-detalle{
+
+    width:100%;
+
+    border-collapse:separate;
+
+    border-spacing:0 10px;
+
+}
+
+.tabla-detalle thead th{
+
+    background:#f7f7f7;
+
+    color:#555;
+
+    padding:14px;
+
+    font-size:13px;
+
+    text-transform:uppercase;
+
+    letter-spacing:0.5px;
+
+}
+
+.tabla-detalle tbody tr{
+
+    background:#fafafa;
+
+    transition:0.2s;
+
+}
+
+.tabla-detalle tbody tr:hover{
+
+    background:#f1f1f1;
+
+}
+
+.tabla-detalle td{
+
+    padding:16px 14px;
+
+    font-size:14px;
+
+    border:none;
+
+}
+
+.tabla-detalle td:first-child{
+
+    border-radius:10px 0 0 10px;
+
+}
+
+.tabla-detalle td:last-child{
+
+    border-radius:0 10px 10px 0;
+
+    text-align:right;
+
+    font-weight:bold;
+
+}
+
+
+/* ========================= */
+/* TOTAL FINAL */
+/* ========================= */
+
+.total-final{
+
+    margin-top:25px;
+
+    display:flex;
+
+    justify-content:flex-end;
+
+}
+
+.total-final span{
+
+    background:#ff9800;
+
+    color:white;
+
+    padding:14px 24px;
+
+    border-radius:12px;
+
+    font-size:24px;
+
+    font-weight:bold;
+
+    box-shadow:0 3px 10px rgba(255,152,0,0.25);
+
+}
+
+.modal-content{
+
+    animation:modalEntrada 0.25s ease;
+
+}
+
+@keyframes modalEntrada{
+
+    from{
+        opacity:0;
+        transform:translateY(20px) scale(0.96);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+
+}
+/* ========================= */
+/* PREVIEW */
+/* ========================= */
+
+#previewImagen{
+
+    width:90px;
+
+    border-radius:6px;
+
+    border:1px solid #ddd;
+
+    margin-top:8px;
+
+}
+
+
+/* ========================= */
+/* RESPONSIVE */
+/* ========================= */
+
+@media(max-width:1200px){
+
+    .container{
+
+        grid-template-columns:
+            1fr
+            1fr;
+
+    }
+
+    .card-pedidos{
+        grid-column:1 / 3;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .container{
+        grid-template-columns:1fr;
+    }
+
+    .card-pedidos{
+        grid-column:auto;
+    }
+
+    .acciones-tabla{
+
+        flex-direction:column;
+
+    }
+
+    .tabla-pedidos{
+
+        display:block;
+
+        overflow-x:auto;
+
+    }
+
+}
+
+El problema es que a las cards de categorías y productos les falta ocupar columnas específicas del grid.
+
+Agregá esto debajo de .card-pedidos:
+
+/* ========================= */
+/* DISTRIBUCION GRID */
+/* ========================= */
+
+.card-categoria-nueva{
+    grid-column:1 / 2;
+}
+
+.card-categorias{
+    grid-column:2 / 3;
+}
+
+.card-producto-nuevo{
+    grid-column:3 / 4;
+}
+
+.card-productos{
+    grid-column:4 / 5;
+}

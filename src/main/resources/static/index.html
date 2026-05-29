@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ElectroKiosco</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        ELECTRO<span class="rayo">⚡</span>KIOSCO
+    </div>
+
+    <div class="nav-links">
+        <span id="navInicio" class="activo">🏠 Inicio</span>
+        <span id="navProductos">🛒 Productos</span>
+    </div>
+
+    <!-- 🛒 BOTON CARRITO -->
+    <div class="carrito-top" id="btnAbrirCarrito">
+        🛒 <span id="cantidadCarrito">0</span>
+    </div>
+
+</nav>
+
+
+<!-- ================= BANNER ================= -->
+
+<header class="banner">
+
+    <div class="banner-overlay">
+
+        <div class="banner-content">
+
+            <h1 class="titulo-principal">
+                ELECTRO<span class="rayo">⚡</span>KIOSCO
+            </h1>
+
+            <p class="subtitulo">
+                Todo lo que necesitás, cuando lo necesitás.
+            </p>
+
+            <div class="cartel-24hs">
+                💡 ¡ESTAMOS ABIERTOS LAS 24 HORAS!
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- ================= BUSCADOR ================= -->
+
+<div class="buscador-wrapper">
+    <input
+            type="text"
+            placeholder="Buscar productos..."
+            class="buscador"
+            id="buscarProducto">
+</div>
+
+
+<!-- ================= CONTENIDO ================= -->
+
+<div class="main-container">
+
+    <!-- SIDEBAR -->
+    <aside id="sidebar" class="sidebar">
+
+        <button id="toggleBtn" class="toggle-btn">❮</button>
+
+        <h3>Categorías</h3>
+
+        <ul id="listaCategorias">
+            <li class="categoria-inicial">
+                Seleccione una categoría
+            </li>
+        </ul>
+
+    </aside>
+
+
+    <!-- CONTENIDO -->
+    <main id="contenido" class="contenido">
+
+        <h2 id="tituloCategoria">
+            Seleccione una categoría
+        </h2>
+
+        <p class="subtexto">
+            Elegí una categoría para ver nuestros productos.
+        </p>
+
+        <div id="productos" class="productos-grid"></div>
+
+    </main>
+
+</div>
+
+
+<!-- ================= 🛒 OVERLAY ================= -->
+
+<div id="overlayCarrito" class="overlay"></div>
+
+
+<!-- ================= 🛒 CARRITO PANEL ================= -->
+
+<div id="carritoPanel" class="carrito-panel">
+
+    <div class="carrito-header">
+        <h3>🛒 Tu Pedido</h3>
+        <button id="btnCerrarCarrito">✖</button>
+    </div>
+
+    <div id="carritoItems" class="carrito-body"></div>
+
+    <div class="carrito-footer">
+        <div class="total">
+            Total: $<span id="totalCarrito">0</span>
+        </div>
+
+        <button id="btnFinalizar" class="btn-finalizar">
+            Finalizar pedido
+        </button>
+    </div>
+
+</div>
+
+
+<!-- ================= 🔔 TOAST ================= -->
+
+<div id="toast" class="toast"></div>
+
+
+<!-- ================= CHAT ================= -->
+
+<div class="chat-btn">💬</div>
+
+
+<!-- ================= SCRIPT ================= -->
+
+<script src="/js/app.js"></script>
+
+</body>
+</html>

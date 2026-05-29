@@ -1,0 +1,44 @@
+package com.electrokiosco.service;
+
+import com.electrokiosco.model.Categoria;
+import com.electrokiosco.repository.CategoriaRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class CategoriaService {
+
+    private final CategoriaRepository repository;
+
+    public CategoriaService(CategoriaRepository repository) {
+        this.repository = repository;
+    }
+
+    public List<Categoria> listar() {
+        return repository.findAll();
+    }
+
+    public Categoria guardar(Categoria categoria) {
+        return repository.save(categoria);
+    }
+
+    public Optional<Categoria> buscarPorId(Long id) {
+        return repository.findById(id);
+    }
+
+    public Categoria actualizar(Long id, Categoria categoria) {
+
+        Categoria existente = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Categoria no encontrada"));
+
+        existente.setNombre(categoria.getNombre());
+
+        return repository.save(existente);
+    }
+
+    public void eliminar(Long id) {
+        repository.deleteById(id);
+    }
+}

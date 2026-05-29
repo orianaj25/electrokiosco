@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Admin - ElectroKiosco</title>
+
+    <link rel="stylesheet" href="/css/admin.css">
+
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+    <h1>Panel Administrador</h1>
+
+</header>
+
+<!-- ================= CONTENIDO ================= -->
+
+<div class="container">
+
+    <!-- ====================================== -->
+    <!-- NUEVA CATEGORIA -->
+    <!-- ====================================== -->
+
+    <div class="card card-categoria-nueva">
+
+        <h2>Nueva Categoría</h2>
+
+        <input
+                type="text"
+                id="nombreCategoria"
+                placeholder="Nombre de la categoría"
+        >
+
+        <button onclick="crearCategoria()">
+            Guardar
+        </button>
+
+    </div>
+
+
+    <!-- ====================================== -->
+    <!-- CATEGORIAS -->
+    <!-- ====================================== -->
+
+    <div class="card card-categorias">
+
+        <h2>Categorías</h2>
+
+        <ul
+                id="listaAdminCategorias"
+                class="lista-admin"
+        >
+        </ul>
+
+    </div>
+
+
+    <!-- ====================================== -->
+    <!-- NUEVO PRODUCTO -->
+    <!-- ====================================== -->
+
+    <div class="card card-producto-nuevo">
+
+        <h2>Nuevo Producto</h2>
+
+        <input
+                type="text"
+                id="nombreProducto"
+                placeholder="Nombre"
+        >
+
+        <input
+                type="text"
+                id="descripcionProducto"
+                placeholder="Descripción"
+        >
+
+        <input
+                type="number"
+                id="precioProducto"
+                placeholder="Precio"
+        >
+
+        <select id="categoriaProducto"></select>
+
+        <input
+                type="file"
+                id="imagenProducto"
+        >
+
+        <!-- PREVIEW -->
+
+        <div class="preview-container">
+
+            <img
+                    id="previewImagen"
+                    class="preview-img"
+            >
+
+        </div>
+
+        <button onclick="guardarProducto()">
+            Guardar Producto
+        </button>
+
+    </div>
+
+
+    <!-- ====================================== -->
+    <!-- PRODUCTOS -->
+    <!-- ====================================== -->
+
+    <div class="card card-productos">
+
+        <h2>Productos</h2>
+
+        <ul
+                id="listaProductosAdmin"
+                class="lista-productos"
+        >
+        </ul>
+
+    </div>
+
+
+    <!-- ====================================== -->
+    <!-- PEDIDOS -->
+    <!-- ====================================== -->
+
+    <div class="card card-pedidos">
+
+        <div class="pedidos-header">
+
+            <h2>Pedidos</h2>
+
+        </div>
+
+        <div class="tabla-responsive">
+
+            <table class="tabla-pedidos">
+
+                <thead>
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Fecha</th>
+
+                    <th>Total</th>
+
+                    <th>Estado</th>
+
+                    <th>Acciones</th>
+
+                </tr>
+
+                </thead>
+
+                <tbody id="tablaPedidos"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ====================================== -->
+<!-- MODAL PEDIDO NUEVO -->
+<!-- ====================================== -->
+
+<div id="modalPedido" class="modal">
+
+    <div class="modal-content">
+
+        <!-- HEADER MODAL -->
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2>
+                    Detalle del Pedido
+                </h2>
+
+                <p class="modal-subtitle">
+                    Información completa del pedido seleccionado
+                </p>
+
+            </div>
+
+            <button
+                    class="btn-cerrar"
+                    onclick="cerrarModal()"
+            >
+                ✖
+            </button>
+
+        </div>
+
+
+        <!-- CONTENIDO DINAMICO -->
+
+        <div id="detallePedido">
+
+            <!-- JS INSERTA CONTENIDO -->
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= SCRIPT ================= -->
+
+<script src="/js/admin.js"></script>
+
+</body>
+
+</html>
