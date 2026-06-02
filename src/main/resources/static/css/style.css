@@ -121,9 +121,12 @@ body{
 .buscador-wrapper{
     display:flex;
     justify-content:center;
-    margin-top:-40px;
+
+    position:relative;
+    z-index:50;
+
+    margin-top:-30px;
     margin-bottom:30px;
-    z-index:10;
 }
 
 .buscador{
@@ -432,4 +435,10 @@ body{
     justify-content:center;
     box-shadow:0 0 10px orange;
     cursor:pointer;
+}
+
+.contenido{
+    flex:1;
+    padding:30px;
+    overflow:hidden;
 }
