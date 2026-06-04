@@ -1,7 +1,10 @@
 package com.electrokiosco.controller;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.electrokiosco.model.Producto;
 import com.electrokiosco.service.ProductoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -10,6 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/productos")
@@ -17,6 +21,9 @@ import java.util.List;
 public class ProductoController {
 
     private final ProductoService service;
+
+    @Autowired
+    private Cloudinary cloudinary;
 
     public ProductoController(ProductoService service) {
         this.service = service;
@@ -51,20 +58,18 @@ public class ProductoController {
     public String subirImagen(@RequestParam("file") MultipartFile file) {
 
         try {
-            String carpeta = "uploads/";
-            String nombreArchivo = System.currentTimeMillis() + "_" + file.getOriginalFilename();
 
-            Path ruta = Paths.get(carpeta + nombreArchivo);
+            Map<?, ?> uploadResult = cloudinary.uploader().upload(
+                    file.getBytes(),
+                    ObjectUtils.emptyMap()
+            );
 
-            Files.createDirectories(ruta.getParent());
-            Files.write(ruta, file.getBytes());
-
-            return "/uploads/" + nombreArchivo;
+            return uploadResult.get("secure_url").toString();
 
         } catch (IOException e) {
-            throw new RuntimeException("Error al subir imagen");
+            throw new RuntimeException("Error al subir imagen", e);
         }
-    }
+        }
 
     @PutMapping("/{id}")
     public Producto actualizar(@PathVariable Long id, @RequestBody Producto producto) {
