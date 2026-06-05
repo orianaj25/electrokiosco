@@ -339,7 +339,7 @@ function limpiarFormulario(){
 
 }
 
-function cargarProductos(){
+function cargarProductos() {
 
     fetch("/productos")
         .then(res => res.json())
@@ -358,18 +358,41 @@ function cargarProductos(){
 
                     <div class="producto-admin">
 
-                        <div class="producto-info">
+                        <div class="producto-fila">
 
-                            <img
-                                src="${prod.imagen}"
-                                class="producto-img"
-                            >
+                            <div class="producto-info">
 
-                            <div>
+                                <img
+                                    src="${prod.imagen}"
+                                    class="producto-img"
+                                    alt="${prod.nombre}"
+                                >
 
-                                <h4>${prod.nombre}</h4>
+                                <div class="prod-texto">
 
-                                <p>$${prod.precio}</p>
+                                    <h4>${prod.nombre}</h4>
+
+                                    <p>$${prod.precio}</p>
+
+                                </div>
+
+                            </div>
+
+                            <div class="acciones">
+
+                                <button
+                                    class="btn-editar"
+                                    onclick="editarProducto(${prod.id})"
+                                >
+                                    Editar
+                                </button>
+
+                                <button
+                                    class="btn-eliminar"
+                                    onclick="eliminarProducto(${prod.id})"
+                                >
+                                    Eliminar
+                                </button>
 
                             </div>
 
@@ -385,18 +408,21 @@ function cargarProductos(){
                                 type="text"
                                 id="edit-nombre-${prod.id}"
                                 value="${prod.nombre}"
+                                placeholder="Nombre"
                             >
 
                             <input
                                 type="text"
                                 id="edit-descripcion-${prod.id}"
-                                value="${prod.descripcion}"
+                                value="${prod.descripcion || ''}"
+                                placeholder="Descripción"
                             >
 
                             <input
                                 type="number"
                                 id="edit-precio-${prod.id}"
                                 value="${prod.precio}"
+                                placeholder="Precio"
                             >
 
                             <input
@@ -413,24 +439,6 @@ function cargarProductos(){
 
                         </div>
 
-                        <div class="acciones">
-
-                            <button
-                                class="btn-editar"
-                                onclick="editarProducto(${prod.id})"
-                            >
-                                Editar
-                            </button>
-
-                            <button
-                                class="btn-eliminar"
-                                onclick="eliminarProducto(${prod.id})"
-                            >
-                                Eliminar
-                            </button>
-
-                        </div>
-
                     </div>
 
                 `;
@@ -439,14 +447,32 @@ function cargarProductos(){
 
             });
 
+        })
+        .catch(error => {
+
+            console.error(
+                "Error cargando productos:",
+                error
+            );
+
         });
 
 }
 
 function editarProducto(id){
 
-    document.getElementById(`edit-${id}`)
-        .style.display = "flex";
+    const form =
+        document.getElementById(`edit-${id}`);
+
+    if(form.style.display === "flex"){
+
+        form.style.display = "none";
+
+    }else{
+
+        form.style.display = "flex";
+
+    }
 
 }
 
