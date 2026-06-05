@@ -80,8 +80,12 @@ public class ProductoController {
         existente.setNombre(producto.getNombre());
         existente.setDescripcion(producto.getDescripcion());
         existente.setPrecio(producto.getPrecio());
-        existente.setImagen(producto.getImagen());
+        if(producto.getImagen() != null &&
+                !producto.getImagen().isBlank()){
 
+            existente.setImagen(producto.getImagen());
+
+        }
         return service.guardar(existente);
     }
 }

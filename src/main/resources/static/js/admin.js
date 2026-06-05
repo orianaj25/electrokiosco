@@ -363,7 +363,7 @@ function cargarProductos() {
                             <div class="producto-info">
 
                                 <img
-                                    src="${prod.imagen}"
+                                    src="${prod.imagen || '/img/sin-imagen.png'}"
                                     class="producto-img"
                                     alt="${prod.nombre}"
                                 >
