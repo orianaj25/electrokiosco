@@ -11,6 +11,7 @@ public class PedidoResponseDTO {
     private LocalDateTime fecha;
     private Double total;
     private String estado;
+    private String metodoPago;
 
     private List<DetalleResponseDTO> detalles;
 

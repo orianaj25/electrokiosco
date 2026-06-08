@@ -31,7 +31,7 @@ public class PedidoService {
         Pedido pedido = new Pedido();
         pedido.setFecha(LocalDateTime.now());
         pedido.setEstado("PENDIENTE");
-
+        pedido.setMetodoPago(dto.getMetodoPago());
         List<DetallePedido> detalles = new ArrayList<>();
 
         double total = 0;
@@ -77,6 +77,7 @@ public class PedidoService {
             dto.setFecha(pedido.getFecha());
             dto.setTotal(pedido.getTotal());
             dto.setEstado(pedido.getEstado());
+            dto.setMetodoPago(pedido.getMetodoPago());
 
             List<PedidoResponseDTO.DetalleResponseDTO> detallesDTO = new ArrayList<>();
 

@@ -13,5 +13,15 @@ public class PedidoDTO {
     public void setItems(List<ItemPedidoDTO> items) {
         this.items = items;
     }
-// getters y setters
+
+    private String metodoPago;
+
+    public String getMetodoPago() {
+        return metodoPago;
+    }
+
+    public void setMetodoPago(String metodoPago) {
+        this.metodoPago = metodoPago;
+    }
+    // getters y setters
 }

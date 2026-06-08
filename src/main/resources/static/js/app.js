@@ -341,10 +341,6 @@ function eliminarItem(id){
     mostrarProductosFiltrados();
 }
 
-
-// =====================
-// 📦 FINALIZAR PEDIDO
-// =====================
 // =====================
 // 📦 FINALIZAR PEDIDO
 // =====================
@@ -359,12 +355,19 @@ function configurarFinalizarPedido(){
             return;
         }
 
+        const metodoPago = document.querySelector(
+            'input[name="metodoPago"]:checked'
+        ).value;
+
         const items = carrito.map(p => ({
             productoId: p.id,
             cantidad: p.cantidad
         }));
 
-        const pedido = { items };
+        const pedido = {
+            items,
+            metodoPago
+        };
 
         // =========================
         // 1️⃣ CREAR PEDIDO
@@ -380,17 +383,34 @@ function configurarFinalizarPedido(){
             return;
         }
 
-        // 🔥 pedido guardado
         const pedidoGuardado = await resPedido.json();
 
         // =========================
-        // 2️⃣ CREAR PREFERENCIA MP
+        // EFECTIVO
+        // =========================
+        if(metodoPago === "EFECTIVO"){
+
+            carrito = [];
+            actualizarCarrito();
+
+            mostrarToast("Pedido realizado correctamente");
+
+            return;
+        }
+
+        // =========================
+        // MERCADO PAGO
         // =========================
         const resMp = await fetch("/mercadopago/crear-preferencia", {
             method:"POST",
             headers:{ "Content-Type":"application/json" },
             body: JSON.stringify(pedidoGuardado)
         });
+
+        if(!resMp.ok){
+            mostrarToast("Error Mercado Pago");
+            return;
+        }
 
         const dataMp = await resMp.json();
 
@@ -399,10 +419,9 @@ function configurarFinalizarPedido(){
             carrito = [];
             actualizarCarrito();
 
-            // 🚀 REDIRECCION MP
             window.location.href = dataMp.url;
 
-        } else {
+        }else{
 
             mostrarToast("Error Mercado Pago");
         }

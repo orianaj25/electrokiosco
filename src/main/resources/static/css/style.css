@@ -441,3 +441,18 @@ body{
     flex:1;
     padding:30px 30px 30px 50px;
 }
+
+.metodo-pago{
+    margin: 15px 0;
+    text-align: left;
+}
+
+.metodo-pago h4{
+    margin-bottom: 10px;
+}
+
+.metodo-pago label{
+    display: block;
+    margin-bottom: 8px;
+    cursor: pointer;
+}

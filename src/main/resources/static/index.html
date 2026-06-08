@@ -123,13 +123,38 @@
     <div id="carritoItems" class="carrito-body"></div>
 
     <div class="carrito-footer">
+
         <div class="total">
             Total: $<span id="totalCarrito">0</span>
+        </div>
+
+        <div class="metodo-pago">
+
+            <h4>Forma de pago</h4>
+
+            <label>
+                <input
+                        type="radio"
+                        name="metodoPago"
+                        value="EFECTIVO"
+                        checked>
+                Efectivo
+            </label>
+
+            <label>
+                <input
+                        type="radio"
+                        name="metodoPago"
+                        value="MERCADOPAGO">
+                Mercado Pago
+            </label>
+
         </div>
 
         <button id="btnFinalizar" class="btn-finalizar">
             Finalizar pedido
         </button>
+
     </div>
 
 </div>

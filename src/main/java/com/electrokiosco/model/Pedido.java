@@ -27,6 +27,8 @@ public class Pedido {
 
     private String estado; // PENDIENTE, PAGADO, ENTREGADO
 
+    private String metodoPago;
+
     @OneToMany(
             mappedBy = "pedido",
             cascade = CascadeType.ALL,
