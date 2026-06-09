@@ -973,3 +973,34 @@ Agregá esto debajo de .card-pedidos:
     background:#fff5d6;
     color:#a87300;
 }
+
+.input-busqueda{
+    width:100%;
+    padding:10px;
+    margin-bottom:15px;
+    border:1px solid #ddd;
+    border-radius:8px;
+}
+
+.filtros-pedidos{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:15px;
+}
+
+.filtros-pedidos input,
+.filtros-pedidos select{
+    padding:8px;
+    border:1px solid #ddd;
+    border-radius:6px;
+}
+
+.filtros-pedidos button{
+    background:#ff9800;
+    color:white;
+    border:none;
+    border-radius:6px;
+    padding:8px 15px;
+    cursor:pointer;
+}

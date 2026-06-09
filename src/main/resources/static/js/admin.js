@@ -8,6 +8,43 @@ document.addEventListener("DOMContentLoaded", () => {
     cargarProductos();
     cargarPedidos();
     previewImagen();
+    document
+        .getElementById("buscarProducto")
+        .addEventListener("input", filtrarProductos);
+
+    document
+        .getElementById("buscarPedido")
+        .addEventListener("input", filtrarPedidos);
+
+    document
+        .getElementById("fechaDesde")
+        .addEventListener("change", filtrarPedidos);
+
+    document
+        .getElementById("fechaHasta")
+        .addEventListener("change", filtrarPedidos);
+
+    document
+        .getElementById("filtroPago")
+        .addEventListener("change", filtrarPedidos);
+
+    document
+        .getElementById("filtroEstado")
+        .addEventListener("change", filtrarPedidos);
+
+           document
+                .getElementById("limpiarFiltros")
+                .addEventListener("click", () => {
+
+                    document.getElementById("buscarPedido").value = "";
+                    document.getElementById("fechaDesde").value = "";
+                    document.getElementById("fechaHasta").value = "";
+                    document.getElementById("filtroPago").value = "";
+                    document.getElementById("filtroEstado").value = "";
+
+                    renderizarPedidos(pedidosGlobal);
+
+                });
 
 });
 
@@ -18,7 +55,7 @@ setInterval(() => {
 
     cargarPedidos();
 
-}, 5000);
+}, 30000);
 
 
 // =====================
@@ -345,6 +382,8 @@ function cargarProductos() {
         .then(res => res.json())
         .then(data => {
 
+        productosGlobal = data;
+
             const lista =
                 document.getElementById("listaProductosAdmin");
 
@@ -557,6 +596,9 @@ function eliminarProducto(id){
 // =====================
 // =====================
 
+let pedidosGlobal = [];
+let productosGlobal = [];
+
 async function cargarPedidos(){
 
     try{
@@ -564,85 +606,9 @@ async function cargarPedidos(){
         const res = await fetch("/pedidos/admin");
 
         const data = await res.json();
+        pedidosGlobal = data;
 
-        const tabla =
-            document.getElementById("tablaPedidos");
-
-        tabla.innerHTML = "";
-
-        data.reverse().forEach(pedido => {
-
-            const estado =
-                pedido.estado || "PENDIENTE";
-
-            const tr =
-                document.createElement("tr");
-
-            tr.innerHTML = `
-
-                <td>${pedido.id}</td>
-
-                <td>
-                    ${formatearFecha(pedido.fecha)}
-                </td>
-
-              <td>
-                  $${pedido.total}
-              </td>
-
-              <td>
-
-                  <span class="metodo-pago-badge ${
-                      pedido.metodoPago === 'MERCADOPAGO'
-                          ? 'mp'
-                          : 'efectivo'
-                  }">
-
-                      ${
-                          pedido.metodoPago === 'MERCADOPAGO'
-                              ? '🟢 Mercado Pago'
-                              : '🟡 Efectivo'
-                      }
-
-                  </span>
-
-              </td>
-
-              <td>
-
-                  <span class="estado estado-${estado.toLowerCase()}">
-                      ${estado}
-                  </span>
-
-              </td>
-
-                <td class="acciones-tabla">
-
-                    <button
-                        class="btn-ver"
-                        onclick="verDetalle(${pedido.id})"
-                    >
-                        Ver
-                    </button>
-
-                    ${estado !== "ENTREGADO" ? `
-
-                        <button
-                            class="btn-entregado"
-                            onclick="cambiarEstado(${pedido.id}, 'ENTREGADO')"
-                        >
-                            Entregado
-                        </button>
-
-                    ` : ""}
-
-                </td>
-
-            `;
-
-            tabla.appendChild(tr);
-
-        });
+        renderizarPedidos(data);
 
     }catch(error){
 
@@ -658,11 +624,8 @@ async function verDetalle(id){
 
     try{
 
-        const res = await fetch("/pedidos/admin");
-
-        const pedidos = await res.json();
-
-        const pedido = pedidos.find(p => p.id === id);
+      const pedido =
+          pedidosGlobal.find(p => p.id === id);
 
         if(!pedido){
 
@@ -858,5 +821,240 @@ function formatearFecha(fecha){
         minute:"2-digit"
 
     });
+
+}
+
+function filtrarProductos(){
+
+    const texto =
+        document.getElementById("buscarProducto")
+        .value
+        .toLowerCase();
+
+    const lista =
+        document.getElementById("listaProductosAdmin");
+
+    lista.innerHTML = "";
+
+    productosGlobal
+        .filter(prod =>
+            prod.nombre
+                .toLowerCase()
+                .includes(texto)
+        )
+        .forEach(prod => {
+
+            const li =
+                document.createElement("li");
+
+            li.innerHTML = `
+
+                <div class="producto-admin">
+
+                    <div class="producto-fila">
+
+                        <div class="producto-info">
+
+                            <img
+                                src="${prod.imagen || '/img/sin-imagen.png'}"
+                                class="producto-img"
+                            >
+
+                            <div class="prod-texto">
+
+                                <h4>${prod.nombre}</h4>
+
+                                <p>$${prod.precio}</p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="acciones">
+
+                            <button
+                                class="btn-editar"
+                                onclick="editarProducto(${prod.id})"
+                            >
+                                Editar
+                            </button>
+
+                            <button
+                                class="btn-eliminar"
+                                onclick="eliminarProducto(${prod.id})"
+                            >
+                                Eliminar
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            `;
+
+            lista.appendChild(li);
+
+        });
+
+}
+
+function renderizarPedidos(data){
+
+    const tabla =
+        document.getElementById("tablaPedidos");
+
+    tabla.innerHTML = "";
+
+    data.slice().reverse().forEach(pedido => {
+
+        const estado =
+            pedido.estado || "PENDIENTE";
+
+        const tr =
+            document.createElement("tr");
+
+        tr.innerHTML = `
+
+            <td>${pedido.id}</td>
+
+            <td>
+                ${formatearFecha(pedido.fecha)}
+            </td>
+
+            <td>
+                $${pedido.total}
+            </td>
+
+            <td>
+
+                <span class="metodo-pago-badge ${
+                    pedido.metodoPago === 'MERCADOPAGO'
+                        ? 'mp'
+                        : 'efectivo'
+                }">
+
+                    ${
+                        pedido.metodoPago === 'MERCADOPAGO'
+                            ? '🟢 Mercado Pago'
+                            : '🟡 Efectivo'
+                    }
+
+                </span>
+
+            </td>
+
+            <td>
+
+                <span class="estado estado-${estado.toLowerCase()}">
+                    ${estado}
+                </span>
+
+            </td>
+
+            <td class="acciones-tabla">
+
+                <button
+                    class="btn-ver"
+                    onclick="verDetalle(${pedido.id})"
+                >
+                    Ver
+                </button>
+
+                ${estado !== "ENTREGADO" ? `
+
+                    <button
+                        class="btn-entregado"
+                        onclick="cambiarEstado(${pedido.id}, 'ENTREGADO')"
+                    >
+                        Entregado
+                    </button>
+
+                ` : ""}
+
+            </td>
+
+        `;
+
+        tabla.appendChild(tr);
+
+    });
+
+}
+
+function filtrarPedidos(){
+
+    const idBusqueda =
+        document.getElementById("buscarPedido")
+        .value
+        .trim();
+
+    const pago =
+        document.getElementById("filtroPago")
+        .value;
+
+    const estado =
+        document.getElementById("filtroEstado")
+        .value;
+
+    const fechaDesde =
+        document.getElementById("fechaDesde")
+        .value;
+
+    const fechaHasta =
+        document.getElementById("fechaHasta")
+        .value;
+
+    const pedidosFiltrados =
+        pedidosGlobal.filter(pedido => {
+
+            const coincideId =
+                !idBusqueda ||
+                pedido.id
+                    .toString()
+                    .includes(idBusqueda);
+
+            const coincidePago =
+                !pago ||
+                pedido.metodoPago === pago;
+
+            const coincideEstado =
+                !estado ||
+                pedido.estado === estado;
+
+            let coincideFecha = true;
+
+            const fechaPedido =
+                pedido.fecha
+                    ? pedido.fecha.substring(0,10)
+                    : "";
+
+            if(fechaDesde){
+
+                coincideFecha =
+                    coincideFecha &&
+                    fechaPedido >= fechaDesde;
+
+            }
+
+            if(fechaHasta){
+
+                coincideFecha =
+                    coincideFecha &&
+                    fechaPedido <= fechaHasta;
+
+            }
+
+            return (
+                coincideId &&
+                coincidePago &&
+                coincideEstado &&
+                coincideFecha
+            );
+
+        });
+
+    renderizarPedidos(pedidosFiltrados);
 
 }

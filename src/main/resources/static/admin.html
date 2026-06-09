@@ -122,6 +122,13 @@
 
         <h2>Productos</h2>
 
+        <input
+                type="text"
+                id="buscarProducto"
+                class="input-busqueda"
+                placeholder="🔍 Buscar producto..."
+        >
+
         <ul
                 id="listaProductosAdmin"
                 class="lista-productos"
@@ -140,6 +147,69 @@
         <div class="pedidos-header">
 
             <h2>Pedidos</h2>
+
+            <div class="filtros-pedidos">
+
+                <input
+                        type="text"
+                        id="buscarPedido"
+                        placeholder="Buscar ID..."
+                >
+
+                <input
+                        type="date"
+                        id="fechaDesde"
+                >
+
+                <input
+                        type="date"
+                        id="fechaHasta"
+                >
+
+                <select id="filtroPago">
+
+                    <option value="">
+                        Todos los pagos
+                    </option>
+
+                    <option value="EFECTIVO">
+                        Efectivo
+                    </option>
+
+                    <option value="MERCADOPAGO">
+                        Mercado Pago
+                    </option>
+
+                </select>
+
+                <select id="filtroEstado">
+
+                    <option value="">
+                        Todos los estados
+                    </option>
+
+                    <option value="PENDIENTE">
+                        Pendiente
+                    </option>
+
+                    <option value="ENTREGADO">
+                        Entregado
+                    </option>
+
+                    <option value="PAGADO">
+                        Pagado
+                    </option>
+
+                </select>
+
+                <button
+                        type="button"
+                        id="limpiarFiltros"
+                >
+                    Limpiar
+                </button>
+
+            </div>
 
         </div>
 
