@@ -456,3 +456,71 @@ body{
     margin-bottom: 8px;
     cursor: pointer;
 }
+
+/* =========================
+   PEDIDO EXITOSO
+========================= */
+
+.pedido-exito{
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0,0,0,.85);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: .3s;
+    z-index: 99999;
+}
+
+.pedido-exito.activo{
+    opacity: 1;
+    visibility: visible;
+}
+
+.pedido-exito-card{
+
+    background: #111;
+
+    border: 2px solid #ffb000;
+
+    border-radius: 20px;
+
+    padding: 40px;
+
+    text-align: center;
+
+    animation: aparecerPedido .4s ease;
+}
+
+.icono-exito{
+    font-size: 70px;
+    margin-bottom: 15px;
+}
+
+.pedido-exito-card h2{
+    color: white;
+    margin-bottom: 10px;
+}
+
+.pedido-exito-card p{
+    color: #ddd;
+}
+
+@keyframes aparecerPedido{
+
+    from{
+        transform: translateY(40px);
+        opacity: 0;
+    }
+
+    to{
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

@@ -341,6 +341,15 @@ function eliminarItem(id){
     mostrarProductosFiltrados();
 }
 
+function mostrarPedidoExito(titulo, texto){
+
+    document.getElementById("tituloExito").textContent = titulo;
+    document.getElementById("textoExito").textContent = texto;
+
+    document
+        .getElementById("pedidoExito")
+        .classList.add("activo");
+}
 // =====================
 // 📦 FINALIZAR PEDIDO
 // =====================
@@ -388,16 +397,30 @@ function configurarFinalizarPedido(){
         // =========================
         // EFECTIVO
         // =========================
-        if(metodoPago === "EFECTIVO"){
+      if(metodoPago === "EFECTIVO"){
 
-            carrito = [];
-            actualizarCarrito();
+          carrito = [];
+          actualizarCarrito();
 
-            mostrarToast("Pedido realizado correctamente");
+          mostrarPedidoExito(
+              "¡Pedido recibido!",
+              "Estamos preparando tu pedido."
+          );
 
-            return;
-        }
+          setTimeout(() => {
 
+              document
+                  .getElementById("pedidoExito")
+                  .classList.remove("activo");
+
+              document
+                  .getElementById("btnCerrarCarrito")
+                  .click();
+
+          }, 2500);
+
+          return;
+      }
         // =========================
         // MERCADO PAGO
         // =========================
@@ -414,17 +437,24 @@ function configurarFinalizarPedido(){
 
         const dataMp = await resMp.json();
 
-        if(dataMp.url){
+      if(dataMp.url){
 
-            carrito = [];
-            actualizarCarrito();
+          carrito = [];
+          actualizarCarrito();
 
-            window.location.href = dataMp.url;
+          mostrarPedidoExito(
+              "¡Excelente!",
+              "Te estamos redirigiendo a Mercado Pago."
+          );
 
-        }else{
+          setTimeout(() => {
+              window.location.href = dataMp.url;
+          }, 2000);
 
-            mostrarToast("Error Mercado Pago");
-        }
+      }else{
+
+          mostrarToast("Error Mercado Pago");
+      }
 
     });
 }
