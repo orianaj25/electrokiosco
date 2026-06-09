@@ -586,17 +586,35 @@ async function cargarPedidos(){
                     ${formatearFecha(pedido.fecha)}
                 </td>
 
-                <td>
-                    $${pedido.total}
-                </td>
+              <td>
+                  $${pedido.total}
+              </td>
 
-                <td>
+              <td>
 
-                    <span class="estado estado-${estado.toLowerCase()}">
-                        ${estado}
-                    </span>
+                  <span class="metodo-pago-badge ${
+                      pedido.metodoPago === 'MERCADOPAGO'
+                          ? 'mp'
+                          : 'efectivo'
+                  }">
 
-                </td>
+                      ${
+                          pedido.metodoPago === 'MERCADOPAGO'
+                              ? '🟢 Mercado Pago'
+                              : '🟡 Efectivo'
+                      }
+
+                  </span>
+
+              </td>
+
+              <td>
+
+                  <span class="estado estado-${estado.toLowerCase()}">
+                      ${estado}
+                  </span>
+
+              </td>
 
                 <td class="acciones-tabla">
 

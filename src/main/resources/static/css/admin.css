@@ -956,3 +956,20 @@ Agregá esto debajo de .card-pedidos:
     }
 
 }
+
+.metodo-pago-badge{
+    padding:6px 10px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:600;
+}
+
+.metodo-pago-badge.mp{
+    background:#dff7e8;
+    color:#0f8f4d;
+}
+
+.metodo-pago-badge.efectivo{
+    background:#fff5d6;
+    color:#a87300;
+}
